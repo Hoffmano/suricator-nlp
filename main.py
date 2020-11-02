@@ -1,16 +1,26 @@
+import os
 from flask import Flask
-from flask_restful import Api, Resource
+from flask_cors import CORS
 
 app = Flask(__name__)
-api = Api(app)
+
+cors = CORS(app, resource={r"/*": {"origins": "*"}})
 
 
-class MainClass(Resource):
-    def get(self):
-        return {'data': 'hello world'}
+@app.route("/", methods=['GET'])
+def index():
+    return "<h1>Hello World!</h1>"
 
 
-api.add_resource(MainClass, "/")
+@app.route("/deploy", methods=['GET'])
+def deploy():
+    return "<h1>Testando deploy GitHub x Heroku </h1>"
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+def main():
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
+
+if __name__ == "__main__":
+    main()
