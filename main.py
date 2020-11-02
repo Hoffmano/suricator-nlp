@@ -4,10 +4,8 @@ from flask_cors import CORS
 from flask_restful import Api, Resource
 
 app = Flask(__name__)
-
-# cors = CORS(app, resource={r"/*": {"origins": "*"}})
-
 api = Api(app)
+CORS(app, resource={r"/*": {"origins": "*"}})
 
 
 class Main(Resource):
