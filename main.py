@@ -85,15 +85,13 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/", methods=["POST"])
+@app.route("/")
 def post():
     song = request.get_json()
 
     response = jsonify(
         difficulty=vote_decode(
             coleman_liau_index_vote(song['lyrics'])))
-    
-    response.header["Access-Control-Allow-Origin"] = "https://suricator.herokuapp.com"
     
     return response
 
