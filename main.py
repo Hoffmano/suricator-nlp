@@ -82,7 +82,7 @@ def vote_decode(n):
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, methods=['POST','OPTIONS','GET'])
 
 
 @app.route("/")
