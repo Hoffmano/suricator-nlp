@@ -82,19 +82,16 @@ def vote_decode(n):
 
 
 app = Flask(__name__)
-CORS(app, resources=r'/*')
+CORS(app)
 
 
-@app.route("/", methods=['POST'])
-@cross_origin()
+@app.route("/")
 def post():
     song = request.get_json()
 
     response = jsonify(
         difficulty=vote_decode(
             coleman_liau_index_vote(song['lyrics'])))
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
 
     return response
 
