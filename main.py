@@ -89,8 +89,6 @@ CORS(app, resources=r'/*')
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
     response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-    response.headers.add('Access-Control-Allow-Methods', 'DELETE',
-                         'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT')
     return response
 
 
