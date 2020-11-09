@@ -1,10 +1,10 @@
 import re
+from flask.helpers import flash
 import nltk.tokenize.punkt
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import nltk
-import json
 nltk.download('punkt')
 
 
@@ -82,17 +82,16 @@ def vote_decode(n):
 
 
 app = Flask(__name__)
-CORS(app, resource={r"/*": {"origins": "*"}})
+CORS(app)
 
 
-@app.route("/", methods=["GET"])
-def get():
+@app.route("/", methods=["POST"])
+def post():
     song = request.get_json()
 
     return jsonify(
         difficulty=vote_decode(
-            coleman_liau_index_vote(song['lyrics']))
-    )
+            coleman_liau_index_vote(song['lyrics'])))
 
 
 def main():
