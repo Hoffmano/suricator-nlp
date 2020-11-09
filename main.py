@@ -85,14 +85,24 @@ app = Flask(__name__)
 CORS(app, resources=r'/*')
 
 
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    response.headers.add('Access-Control-Allow-Methods', 'DELETE',
+                         'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT')
+    return response
+
+
 @app.route("/", methods=['POST'])
+@cross_origin()
 def post():
     song = request.get_json()
 
     response = jsonify(
         difficulty=vote_decode(
             coleman_liau_index_vote(song['lyrics'])))
-    
+
     return response
 
 
