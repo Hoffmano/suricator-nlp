@@ -89,9 +89,13 @@ CORS(app)
 def post():
     song = request.get_json()
 
-    return jsonify(
+    response = jsonify(
         difficulty=vote_decode(
             coleman_liau_index_vote(song['lyrics'])))
+    
+    response.header["Access-Control-Allow-Origin"] = "https://suricator.herokuapp.com"
+    
+    return response
 
 
 def main():
