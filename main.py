@@ -82,10 +82,10 @@ def vote_decode(n):
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources=r'/*')
 
 
-@app.route("/")
+@app.route("/", methods=['POST'])
 def post():
     song = request.get_json()
 
