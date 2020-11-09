@@ -40,6 +40,10 @@ def letter_count(txt):
     return num_words
 
 
+def data_clean(txt):
+    return re.sub('[(?=\[)][\w|(\w\s)|(\w\-\w)]*[(?<=\])]', '', txt)
+
+
 def coleman_liau_index(txt):
     s = (0.5*verse_count(txt) * (100 / token_count(txt)))
     l = (letter_count(txt) * (100 / token_count(txt)))
@@ -47,6 +51,7 @@ def coleman_liau_index(txt):
 
 
 def coleman_liau_index_vote(txt):
+    txt = data_clean(txt)
     resp = coleman_liau_index(txt)
     if resp <= 5.0:
         return 0
@@ -82,10 +87,10 @@ def vote_decode(n):
 
 
 app = Flask(__name__)
-CORS(app, methods=['POST','OPTIONS','GET','HEAD'])
+CORS(app, methods=['POST', 'OPTIONS', 'GET', 'HEAD'])
 
 
-@app.route("/",methods=['POST'])
+@app.route("/", methods=['POST'])
 def post():
     song = request.get_json()
 
