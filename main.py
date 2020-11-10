@@ -3,7 +3,7 @@ from flask.helpers import flash
 import nltk.tokenize.punkt
 import os
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import nltk
 nltk.download('punkt')
 
@@ -87,16 +87,20 @@ def vote_decode(n):
 
 
 app = Flask(__name__)
-CORS(app, methods=['POST', 'OPTIONS', 'GET', 'HEAD'])
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
-@app.route("/", methods=['POST'])
+@app.route("/", methods=["POST"])
+@cross_origin()
 def post():
     song = request.get_json()
 
     response = jsonify(
         difficulty=vote_decode(
             coleman_liau_index_vote(song['lyrics'])))
+
+    # response.headers.add("Access-Control-Allow-Origin","*")
 
     return response
 
