@@ -1,1 +1,1 @@
-web: python3 main.py
+web: python3 -m spacy download en && python3 main.py
