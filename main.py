@@ -1,4 +1,4 @@
-from nlp import get_difficulty
+from nlp import difficulty
 import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
@@ -15,7 +15,7 @@ def post():
     song = request.get_json()
 
     response = jsonify(
-        difficulty = get_difficulty(song)
+        difficulty = difficulty(song)
     )
 
     return response
