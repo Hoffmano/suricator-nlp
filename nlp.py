@@ -1,7 +1,7 @@
 import re
 import nltk.tokenize.punkt
 import nltk
-import spacy
+import spacy; spacy.load('en')
 import statistics
 import math
 from lexical_diversity import lex_div as ld
