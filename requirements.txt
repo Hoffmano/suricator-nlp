@@ -1,4 +1,4 @@
-apturl==0.5.2
+apturl
 bcrypt==3.1.7
 blinker==1.4
 blis==0.4.1
