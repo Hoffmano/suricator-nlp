@@ -62,13 +62,13 @@ def letter_count(txt):
 
 
 def data_clean(txt):
-    clean = re.sub('(\[.*\])|(\(.*\))', '', txt)
-    lines = [line for line in clean.split('\n')]
-    resp = ""
-    for i in range(0, len(lines)-2):
-        if not (lines[i] == '' and lines[i+1] == ''):
-            resp += (lines[i] + '\n')
-    return resp
+  clean = re.sub('(\[.*\])|(\(.*\))', '', txt)
+  lines = [line for line in clean.split('\n')]
+  resp = ""
+  for i in range(0, len(lines)-2):
+    if not (lines[i] == '' and lines[i+1] == ''):
+      resp += (lines[i] + '\n')
+  return resp
 
 
 def coleman_liau_index(txt):
