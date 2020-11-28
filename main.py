@@ -12,10 +12,11 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route("/", methods=["POST"])
 @cross_origin()
 def post():
+
     song = request.get_json()
 
     print(song["lyrics"])
-    
+
     response = jsonify(
         difficulty = difficulty(song)
     )

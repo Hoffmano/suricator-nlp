@@ -153,7 +153,7 @@ def vote_decode(n):
     elif n == 5:
         return "C2"
     else:
-        return "Fluent"
+        return "C2"
 
 
 def difficulty(song):
