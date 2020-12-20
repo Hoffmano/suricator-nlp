@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/hoffman/Documents/code/GitHub/nlp-lyrics-api/venv"
+set -gx VIRTUAL_ENV "/home/hoffman/Documents/Github/suricator-nlp/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

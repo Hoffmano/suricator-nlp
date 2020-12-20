@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/hoffman/Documents/code/GitHub/nlp-lyrics-api/venv"
+VIRTUAL_ENV="/home/hoffman/Documents/Github/suricator-nlp/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
