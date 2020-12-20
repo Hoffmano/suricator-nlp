@@ -1,0 +1,122 @@
+Metadata-Version: 2.1
+Name: nlp
+Version: 0.4.0
+Summary: HuggingFace/NLP is an open library of NLP datasets.
+Home-page: https://github.com/huggingface/nlp
+Author: HuggingFace Inc.
+Author-email: thomas@huggingface.co
+License: Apache 2.0
+Download-URL: https://github.com/huggingface/nlp/tags
+Keywords: nlp machine learning datasets metrics
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Dist: numpy
+Requires-Dist: pyarrow (>=0.16.0)
+Requires-Dist: dill
+Requires-Dist: pandas
+Requires-Dist: requests (>=2.19.0)
+Requires-Dist: tqdm (>=4.27)
+Requires-Dist: filelock
+Requires-Dist: xxhash
+Requires-Dist: dataclasses ; python_version < "3.7"
+Provides-Extra: apache-beam
+Requires-Dist: apache-beam ; extra == 'apache-beam'
+Provides-Extra: dev
+Requires-Dist: apache-beam ; extra == 'dev'
+Requires-Dist: absl-py ; extra == 'dev'
+Requires-Dist: bs4 ; extra == 'dev'
+Requires-Dist: elasticsearch ; extra == 'dev'
+Requires-Dist: faiss-cpu ; extra == 'dev'
+Requires-Dist: langdetect ; extra == 'dev'
+Requires-Dist: mwparserfromhell ; extra == 'dev'
+Requires-Dist: nltk ; extra == 'dev'
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: pytest-xdist ; extra == 'dev'
+Requires-Dist: tensorflow ; extra == 'dev'
+Requires-Dist: torch ; extra == 'dev'
+Requires-Dist: tldextract ; extra == 'dev'
+Requires-Dist: zstandard ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: isort ; extra == 'dev'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: recommonmark ; extra == 'docs'
+Requires-Dist: sphinx ; extra == 'docs'
+Requires-Dist: sphinx-markdown-tables ; extra == 'docs'
+Requires-Dist: sphinx-rtd-theme (==0.4.3) ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Provides-Extra: quality
+Requires-Dist: black ; extra == 'quality'
+Requires-Dist: isort ; extra == 'quality'
+Requires-Dist: flake8 (==3.7.9) ; extra == 'quality'
+Provides-Extra: tensorflow
+Requires-Dist: tensorflow (>=2.2.0) ; extra == 'tensorflow'
+Provides-Extra: tensorflow_gpu
+Requires-Dist: tensorflow-gpu (>=2.2.0) ; extra == 'tensorflow_gpu'
+Provides-Extra: tests
+Requires-Dist: apache-beam ; extra == 'tests'
+Requires-Dist: absl-py ; extra == 'tests'
+Requires-Dist: bs4 ; extra == 'tests'
+Requires-Dist: elasticsearch ; extra == 'tests'
+Requires-Dist: faiss-cpu ; extra == 'tests'
+Requires-Dist: langdetect ; extra == 'tests'
+Requires-Dist: mwparserfromhell ; extra == 'tests'
+Requires-Dist: nltk ; extra == 'tests'
+Requires-Dist: pytest ; extra == 'tests'
+Requires-Dist: pytest-xdist ; extra == 'tests'
+Requires-Dist: tensorflow ; extra == 'tests'
+Requires-Dist: torch ; extra == 'tests'
+Requires-Dist: tldextract ; extra == 'tests'
+Requires-Dist: zstandard ; extra == 'tests'
+Provides-Extra: torch
+Requires-Dist: torch ; extra == 'torch'
+
+Simple check list for release from AllenNLP repo: https://github.com/allenai/allennlp/blob/master/setup.py
+
+To create the package for pypi.
+
+1. Change the version in __init__.py, setup.py as well as docs/source/conf.py.
+
+2. Commit these changes with the message: "Release: VERSION"
+
+3. Add a tag in git to mark the release: "git tag VERSION -m'Adds tag VERSION for pypi' "
+   Push the tag to git: git push --tags origin master
+
+4. Build both the sources and the wheel. Do not change anything in setup.py between
+   creating the wheel and the source distribution (obviously).
+
+   For the wheel, run: "python setup.py bdist_wheel" in the top level directory.
+   (this will build a wheel for the python version you use to build it).
+
+   For the sources, run: "python setup.py sdist"
+   You should now have a /dist directory with both .whl and .tar.gz source versions.
+
+5. Check that everything looks correct by uploading the package to the pypi test server:
+
+   twine upload dist/* -r pypitest
+   (pypi suggest using twine as other methods upload files via plaintext.)
+   You may have to specify the repository url, use the following command then:
+   twine upload dist/* -r pypitest --repository-url=https://test.pypi.org/legacy/
+
+   Check that you can install it in a virtualenv by running:
+   pip install -i https://testpypi.python.org/pypi nlp
+
+6. Upload the final version to actual pypi:
+   twine upload dist/* -r pypi
+
+7. Copy the release notes from RELEASE.md to the tag in github once everything is looking hunky-dory.
+
+8. Update the documentation commit in .circleci/deploy.sh for the accurate documentation to be displayed
+
+9. Update README.md to redirect to correct documentation.
+
+
