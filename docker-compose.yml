@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  nlp:
+    container_name: nlp-test
+    build: .
+    ports:
+      - 5000:5000
